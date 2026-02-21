@@ -28,7 +28,7 @@ class Settings(BaseSettings):
     wavespeed_base_url: str = "https://api.wavespeed.ai"
     wavespeed_model: str = "wavespeed-ai/z-image/turbo-lora"
 
-    model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
+    model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
 
 settings = Settings()
