@@ -35,60 +35,194 @@
 
 ---
 
-## 🚀 快速啟動
+## 🚀 安裝與啟動
 
-### 前置需求
+### 第一步：安裝必要工具
 
-| 工具 | 版本 |
-|------|------|
-| Python | 3.11+ |
-| Node.js | 20+ |
-| OpenAI API Key | 必要 |
+#### 1. Git
+用來下載（clone）此專案。
 
-### 方式一：一鍵啟動腳本
+- **Windows**：下載並安裝 [Git for Windows](https://git-scm.com/download/win)，安裝時全部選預設即可
+- **macOS**：終端機執行 `xcode-select --install`
+- **Linux (Ubuntu/Debian)**：`sudo apt install git`
+
+安裝後確認：
+```bash
+git --version   # 應顯示 git version 2.x.x
+```
+
+---
+
+#### 2. Python 3.11+
+後端執行環境。
+
+- **Windows**：前往 [python.org/downloads](https://www.python.org/downloads/) 下載 3.11 或更新版本。安裝時 **務必勾選「Add Python to PATH」**
+- **macOS**：`brew install python@3.11`（需先安裝 [Homebrew](https://brew.sh/)）
+- **Linux**：`sudo apt install python3.11 python3.11-venv python3-pip`
+
+安裝後確認：
+```bash
+python --version        # Windows
+python3 --version       # macOS / Linux
+# 應顯示 Python 3.11.x 或更新
+```
+
+---
+
+#### 3. Node.js 20+
+前端執行環境。
+
+- **所有平台**：前往 [nodejs.org](https://nodejs.org/) 下載 **LTS 版本**（20.x 或更新），依照安裝精靈完成安裝
+- **macOS（Homebrew）**：`brew install node`
+- **Linux**：
+  ```bash
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  sudo apt install -y nodejs
+  ```
+
+安裝後確認：
+```bash
+node --version   # 應顯示 v20.x.x 或更新
+npm --version    # 應顯示 10.x.x 或更新
+```
+
+---
+
+#### 4. OpenAI API Key
+語音辨識（Whisper）、AI 對話（GPT-4o-mini）、語音合成（TTS）都需要此金鑰。
+
+1. 前往 [platform.openai.com](https://platform.openai.com/) 登入或註冊帳號
+2. 點右上角頭像 → **API keys** → **Create new secret key**
+3. 複製金鑰（格式：`sk-...`），**關閉前務必複製，之後無法再看到**
+
+---
+
+### 第二步：下載專案
+
+```bash
+git clone https://github.com/duncan19760605/GenAI-Kid.git
+cd GenAI-Kid
+```
+
+---
+
+### 第三步：設定環境變數
+
+複製範本設定檔：
+
+```bash
+# Linux / macOS
+cp .env.example apps/backend/.env
+
+# Windows
+copy .env.example apps\backend\.env
+```
+
+用文字編輯器開啟 `apps/backend/.env`，填入以下必要欄位：
+
+```env
+# 保持不變（SQLite 自動建立，無需安裝資料庫）
+DATABASE_URL=sqlite+aiosqlite:///./genius_kid.db
+
+# 隨機字串，可用以下指令產生：
+# python -c "import secrets; print(secrets.token_hex(32))"
+JWT_SECRET=請填入隨機字串
+
+# Fernet 加密金鑰，用以下指令產生：
+# python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+ENCRYPTION_KEY=請填入Fernet金鑰
+
+# 你的 OpenAI API 金鑰（必填）
+OPENAI_API_KEY=sk-...
+```
+
+> 💡 **產生金鑰的方法（執行一次即可）：**
+> ```bash
+> # JWT_SECRET
+> python -c "import secrets; print(secrets.token_hex(32))"
+>
+> # ENCRYPTION_KEY
+> python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+> ```
+> 將輸出結果分別填入 `.env` 對應欄位。
+
+---
+
+### 第四步：啟動應用程式
+
+#### 方式 A：一鍵啟動（推薦）
 
 **Linux / macOS：**
 ```bash
-git clone https://github.com/duncan19760605/GenAI-Kid.git
-cd GenAI-Kid
-cp .env.example apps/backend/.env
-nano apps/backend/.env   # 填入 OPENAI_API_KEY 等
-chmod +x start.sh && ./start.sh
+chmod +x start.sh
+./start.sh
 ```
 
-**Windows：**
+**Windows（以系統管理員身份執行命令提示字元）：**
 ```bat
-git clone https://github.com/duncan19760605/GenAI-Kid.git
-cd GenAI-Kid
-copy .env.example apps\backend\.env
-notepad apps\backend\.env
 start.bat
 ```
 
-### 方式二：手動步驟
+腳本會自動完成：建立虛擬環境 → 安裝套件 → 初始化資料庫 → 啟動前後端。
+
+---
+
+#### 方式 B：手動分步啟動
+
+開啟**第一個終端機視窗**，啟動後端：
 
 ```bash
-# 1. 複製並編輯設定檔
-cp .env.example apps/backend/.env
-# 填入：OPENAI_API_KEY, JWT_SECRET, ENCRYPTION_KEY
-
-# 2. 啟動後端
 cd apps/backend
-python -m venv .venv
-source .venv/bin/activate       # Windows: .venv\Scripts\activate.bat
-pip install -r requirements.txt
-alembic upgrade head
-uvicorn app.main:app --reload --port 8000
 
-# 3. 啟動前端（另開終端機）
+# 建立 Python 虛擬環境（只需執行一次）
+python -m venv .venv
+
+# 啟用虛擬環境
+source .venv/bin/activate        # Linux / macOS
+# 或
+.venv\Scripts\activate.bat       # Windows
+
+# 安裝 Python 套件（只需執行一次）
+pip install -r requirements.txt
+
+# 初始化資料庫（只需執行一次，自動建立 genius_kid.db）
+alembic upgrade head
+
+# 啟動後端伺服器
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+看到 `Uvicorn running on http://0.0.0.0:8000` 表示後端已啟動。
+
+---
+
+開啟**第二個終端機視窗**，啟動前端：
+
+```bash
 cd apps/parent-ui
+
+# 安裝 Node 套件（只需執行一次）
 npm install
+
+# 建立前端設定檔（只需執行一次）
 echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
 echo "NEXT_PUBLIC_WS_URL=ws://localhost:8000" >> .env.local
+
+# 啟動前端
 npm run dev
 ```
 
-開啟瀏覽器：`http://localhost:3000`
+看到 `Ready on http://localhost:3000` 表示前端已啟動。
+
+---
+
+### 第五步：開啟瀏覽器
+
+```
+http://localhost:3000
+```
+
+🎉 看到角色選擇畫面即代表安裝成功！
 
 ---
 
