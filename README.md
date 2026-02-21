@@ -106,98 +106,96 @@ cd GenAI-Kid
 
 ---
 
-### 第三步：設定環境變數
+### 第三步：建立 Python 虛擬環境並安裝套件
 
-複製範本設定檔：
+> 此步驟安裝後端所需套件（含產生金鑰用的 `cryptography`），須在設定金鑰**之前**完成。
 
 ```bash
-# Linux / macOS
-cp .env.example apps/backend/.env
+cd apps/backend
 
-# Windows
-copy .env.example apps\backend\.env
+# 建立虛擬環境（只需執行一次）
+python -m venv .venv
+
+# 啟用虛擬環境
+.venv\Scripts\activate.bat       # Windows
+source .venv/bin/activate        # macOS / Linux
+
+# 安裝所有套件（只需執行一次）
+pip install -r requirements.txt
 ```
 
-用文字編輯器開啟 `apps/backend/.env`，填入以下必要欄位：
-
-```env
-# 保持不變（SQLite 自動建立，無需安裝資料庫）
-DATABASE_URL=sqlite+aiosqlite:///./genius_kid.db
-
-# 隨機字串，可用以下指令產生：
-# python -c "import secrets; print(secrets.token_hex(32))"
-JWT_SECRET=請填入隨機字串
-
-# Fernet 加密金鑰，用以下指令產生：
-# python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
-ENCRYPTION_KEY=請填入Fernet金鑰
-
-# 你的 OpenAI API 金鑰（必填）
-OPENAI_API_KEY=sk-...
-```
-
-> 💡 **產生金鑰的方法（執行一次即可）：**
->
-> ⚠️ **請在「命令提示字元」或「終端機」執行下列指令，不是在 Python 的 `>>>` 互動介面中輸入。**
->
-> **產生 JWT_SECRET（無需安裝額外套件）：**
-> ```bash
-> python -c "import secrets; print(secrets.token_hex(32))"
-> ```
->
-> **產生 ENCRYPTION_KEY（需先安裝 `cryptography`）：**
->
-> 若尚未安裝，先執行：
-> ```bash
-> pip install cryptography
-> ```
-> 再執行：
-> ```bash
-> python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
-> ```
->
-> 將兩段輸出結果分別填入 `.env` 對應欄位。
->
-> 💡 使用**方式 A（一鍵啟動）**會自動安裝所有套件，啟動後再回來補填金鑰並重啟即可。
+看到 `Successfully installed ...` 即完成。
 
 ---
 
-### 第四步：啟動應用程式
+### 第四步：設定環境變數
+
+回到**專案根目錄**，複製範本設定檔：
+
+```bash
+# macOS / Linux（在 GenAI-Kid/ 目錄下執行）
+cp .env.example apps/backend/.env
+
+# Windows（在 GenAI-Kid\ 目錄下執行）
+copy .env.example apps\backend\.env
+```
+
+用文字編輯器開啟 `apps/backend/.env`，依序填入以下欄位：
+
+> ⚠️ 下列金鑰產生指令請在「**命令提示字元**」或「**終端機**」執行，不是 Python 的 `>>>` 互動介面。
+
+**JWT_SECRET**（隨機字串，執行後複製輸出貼入）：
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+**ENCRYPTION_KEY**（第三步已安裝 cryptography，可直接執行）：
+```bash
+python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+```
+
+**OPENAI_API_KEY**：填入第一步取得的金鑰（`sk-...`）。
+
+完成後 `apps/backend/.env` 應如下：
+
+```env
+DATABASE_URL=sqlite+aiosqlite:///./genius_kid.db
+JWT_SECRET=（貼上第一段輸出，64 位十六進位字串）
+ENCRYPTION_KEY=（貼上第二段輸出，以 = 結尾的 Base64 字串）
+OPENAI_API_KEY=sk-...
+```
+
+---
+
+### 第五步：啟動應用程式
 
 #### 方式 A：一鍵啟動（推薦）
 
-**Linux / macOS：**
+**Windows：**
+```bat
+start.bat
+```
+
+**macOS / Linux：**
 ```bash
 chmod +x start.sh
 ./start.sh
 ```
 
-**Windows（以系統管理員身份執行命令提示字元）：**
-```bat
-start.bat
-```
-
-腳本會自動完成：建立虛擬環境 → 安裝套件 → 初始化資料庫 → 啟動前後端。
+腳本自動完成：（若尚未建立）建立虛擬環境 → 安裝套件 → 初始化資料庫 → 同時啟動前後端。
 
 ---
 
 #### 方式 B：手動分步啟動
 
-開啟**第一個終端機視窗**，啟動後端：
+確認已完成第三步，開啟**第一個終端機視窗**：
 
 ```bash
 cd apps/backend
 
-# 建立 Python 虛擬環境（只需執行一次）
-python -m venv .venv
-
 # 啟用虛擬環境
-source .venv/bin/activate        # Linux / macOS
-# 或
 .venv\Scripts\activate.bat       # Windows
-
-# 安裝 Python 套件（只需執行一次）
-pip install -r requirements.txt
+source .venv/bin/activate        # macOS / Linux
 
 # 初始化資料庫（只需執行一次，自動建立 genius_kid.db）
 alembic upgrade head
@@ -208,9 +206,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 看到 `Uvicorn running on http://0.0.0.0:8000` 表示後端已啟動。
 
----
-
-開啟**第二個終端機視窗**，啟動前端：
+開啟**第二個終端機視窗**：
 
 ```bash
 cd apps/parent-ui
@@ -230,7 +226,7 @@ npm run dev
 
 ---
 
-### 第五步：開啟瀏覽器
+### 第六步：開啟瀏覽器
 
 ```
 http://localhost:3000
