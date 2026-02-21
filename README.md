@@ -137,14 +137,28 @@ OPENAI_API_KEY=sk-...
 ```
 
 > 💡 **產生金鑰的方法（執行一次即可）：**
-> ```bash
-> # JWT_SECRET
-> python -c "import secrets; print(secrets.token_hex(32))"
 >
-> # ENCRYPTION_KEY
+> ⚠️ **請在「命令提示字元」或「終端機」執行下列指令，不是在 Python 的 `>>>` 互動介面中輸入。**
+>
+> **產生 JWT_SECRET（無需安裝額外套件）：**
+> ```bash
+> python -c "import secrets; print(secrets.token_hex(32))"
+> ```
+>
+> **產生 ENCRYPTION_KEY（需先安裝 `cryptography`）：**
+>
+> 若尚未安裝，先執行：
+> ```bash
+> pip install cryptography
+> ```
+> 再執行：
+> ```bash
 > python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 > ```
-> 將輸出結果分別填入 `.env` 對應欄位。
+>
+> 將兩段輸出結果分別填入 `.env` 對應欄位。
+>
+> 💡 使用**方式 A（一鍵啟動）**會自動安裝所有套件，啟動後再回來補填金鑰並重啟即可。
 
 ---
 
