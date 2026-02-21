@@ -1,0 +1,113 @@
+<svg width="900" height="560" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <!-- Browser frame -->
+  <rect width="900" height="560" rx="12" fill="#e5e7eb"/>
+  <rect x="0" y="0" width="900" height="40" rx="12" fill="#d1d5db"/>
+  <rect x="0" y="28" width="900" height="12" fill="#d1d5db"/>
+  <circle cx="24" cy="20" r="6" fill="#ef4444"/>
+  <circle cx="44" cy="20" r="6" fill="#f59e0b"/>
+  <circle cx="64" cy="20" r="6" fill="#22c55e"/>
+  <rect x="160" y="8" width="580" height="24" rx="12" fill="#f9fafb"/>
+  <text x="450" y="24" text-anchor="middle" font-size="12" fill="#6b7280">localhost:3000/children</text>
+
+  <!-- Main bg -->
+  <rect x="0" y="40" width="900" height="520" fill="#f9fafb"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="40" width="200" height="520" fill="white"/>
+  <rect x="196" y="40" width="4" height="520" fill="#f3f4f6"/>
+  <text x="100" y="84" text-anchor="middle" font-size="14" font-weight="bold" fill="#f97316">🌟 Genius GenAI</text>
+  <text x="36" y="126" font-size="20">📊</text>
+  <text x="62" y="126" font-size="14" fill="#6b7280">總覽</text>
+  <rect x="12" y="144" width="176" height="40" rx="8" fill="#fff7ed"/>
+  <text x="36" y="170" font-size="20">👦</text>
+  <text x="62" y="170" font-size="14" font-weight="bold" fill="#ea580c">孩子管理</text>
+  <text x="36" y="216" font-size="20">💬</text>
+  <text x="62" y="216" font-size="14" fill="#6b7280">對話記錄</text>
+  <text x="36" y="262" font-size="20">⚙️</text>
+  <text x="62" y="262" font-size="14" fill="#6b7280">AI 設定</text>
+
+  <!-- Content -->
+  <text x="226" y="82" font-size="22" font-weight="bold" fill="#111827">孩子管理</text>
+  <rect x="750" y="58" width="120" height="38" rx="10" fill="#f97316"/>
+  <text x="810" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="white">+ 新增孩子</text>
+
+  <!-- Child card 1 - Bear -->
+  <rect x="220" y="108" width="320" height="180" rx="16" fill="white"/>
+  <circle cx="262" cy="148" r="28" fill="#fff7ed"/>
+  <text x="262" y="158" text-anchor="middle" font-size="32">🐻</text>
+  <text x="304" y="136" font-size="18" font-weight="bold" fill="#374151">小明</text>
+  <text x="304" y="156" font-size="13" fill="#9ca3af">5 歲 · 小熊貝貝</text>
+
+  <text x="240" y="200" font-size="12" fill="#9ca3af">主語言</text>
+  <rect x="308" y="186" width="50" height="22" rx="6" fill="#fff7ed"/>
+  <text x="333" y="202" text-anchor="middle" font-size="12" fill="#ea580c">🇹🇼 中文</text>
+
+  <text x="240" y="228" font-size="12" fill="#9ca3af">學習語言</text>
+  <rect x="308" y="214" width="44" height="22" rx="6" fill="#eff6ff"/>
+  <text x="330" y="230" text-anchor="middle" font-size="12" fill="#2563eb">🇺🇸 英</text>
+  <rect x="358" y="214" width="44" height="22" rx="6" fill="#fdf4ff"/>
+  <text x="380" y="230" text-anchor="middle" font-size="12" fill="#7c3aed">🇪🇸 西</text>
+
+  <text x="240" y="262" font-size="12" fill="#9ca3af">登入碼</text>
+  <rect x="308" y="248" width="80" height="28" rx="8" fill="#f3f4f6"/>
+  <text x="348" y="267" text-anchor="middle" font-size="16" font-weight="bold" letter-spacing="4" fill="#374151">123456</text>
+
+  <rect x="396" y="252" width="112" height="28" rx="8" fill="#fff7ed" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="452" y="270" text-anchor="middle" font-size="12" fill="#d97706">✏️ 編輯</text>
+
+  <!-- Child card 2 - Rabbit -->
+  <rect x="558" y="108" width="320" height="180" rx="16" fill="white"/>
+  <circle cx="600" cy="148" r="28" fill="#fdf4ff"/>
+  <text x="600" y="158" text-anchor="middle" font-size="32">🐰</text>
+  <text x="642" y="136" font-size="18" font-weight="bold" fill="#374151">小花</text>
+  <text x="642" y="156" font-size="13" fill="#9ca3af">4 歲 · 小兔跳跳</text>
+
+  <text x="578" y="200" font-size="12" fill="#9ca3af">主語言</text>
+  <rect x="646" y="186" width="50" height="22" rx="6" fill="#fff7ed"/>
+  <text x="671" y="202" text-anchor="middle" font-size="12" fill="#ea580c">🇹🇼 中文</text>
+
+  <text x="578" y="228" font-size="12" fill="#9ca3af">學習語言</text>
+  <rect x="646" y="214" width="44" height="22" rx="6" fill="#eff6ff"/>
+  <text x="668" y="230" text-anchor="middle" font-size="12" fill="#2563eb">🇺🇸 英</text>
+
+  <text x="578" y="262" font-size="12" fill="#9ca3af">登入碼</text>
+  <rect x="646" y="248" width="80" height="28" rx="8" fill="#f3f4f6"/>
+  <text x="686" y="267" text-anchor="middle" font-size="16" font-weight="bold" letter-spacing="4" fill="#374151">789012</text>
+
+  <rect x="734" y="252" width="112" height="28" rx="8" fill="#fff7ed" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="790" y="270" text-anchor="middle" font-size="12" fill="#d97706">✏️ 編輯</text>
+
+  <!-- Add child form -->
+  <rect x="220" y="308" width="658" height="220" rx="16" fill="white"/>
+  <text x="244" y="338" font-size="16" font-weight="bold" fill="#374151">新增孩子</text>
+
+  <!-- Form fields row 1 -->
+  <text x="244" y="370" font-size="13" fill="#6b7280">孩子姓名</text>
+  <rect x="244" y="378" width="180" height="38" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="258" y="401" font-size="13" fill="#9ca3af">請輸入姓名</text>
+
+  <text x="444" y="370" font-size="13" fill="#6b7280">年齡</text>
+  <rect x="444" y="378" width="80" height="38" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="458" y="401" font-size="13" fill="#9ca3af">3–8</text>
+
+  <text x="544" y="370" font-size="13" fill="#6b7280">角色</text>
+  <rect x="544" y="378" width="120" height="38" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="558" y="401" font-size="13" fill="#374151">🐻 小熊</text>
+  <text x="648" y="401" font-size="13" fill="#9ca3af">▾</text>
+
+  <!-- Form fields row 2 -->
+  <text x="244" y="438" font-size="13" fill="#6b7280">主要語言</text>
+  <rect x="244" y="446" width="130" height="38" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="258" y="469" font-size="13" fill="#374151">🇹🇼 中文</text>
+  <text x="358" y="469" font-size="13" fill="#9ca3af">▾</text>
+
+  <text x="394" y="438" font-size="13" fill="#6b7280">學習語言</text>
+  <rect x="394" y="446" width="50" height="38" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="419" y="469" text-anchor="middle" font-size="13" fill="#2563eb">🇺🇸</text>
+  <rect x="452" y="446" width="50" height="38" rx="8" fill="#fdf4ff" stroke="#c4b5fd" stroke-width="1.5"/>
+  <text x="477" y="469" text-anchor="middle" font-size="13" fill="#7c3aed">🇪🇸</text>
+
+  <!-- Submit button -->
+  <rect x="244" y="498" width="200" height="44" rx="10" fill="#f97316"/>
+  <text x="344" y="525" text-anchor="middle" font-size="15" font-weight="bold" fill="white">建立孩子帳號</text>
+</svg>
