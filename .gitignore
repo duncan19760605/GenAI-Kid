@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Environment (keep .env.example files)
+.env
+.env.local
+!.env.example
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+nul
+
+# Release archives (keep release folder, ignore zips inside)
+release/*.zip
+release/*.tar.gz
+
+# Expo
+.expo/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Misc
+*.log
+package-lock.json
+.claude/

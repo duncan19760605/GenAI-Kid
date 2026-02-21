@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f9fafb;
+  --foreground: #111827;
+  --primary: #f97316;
+  --primary-light: #fdba74;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ─── Kid UI Animations ─────────────────────────────────────────────────── */
+
+@keyframes kid-breathe {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+@keyframes kid-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes kid-pulse {
+  0%, 100% { transform: scale(0.5); opacity: 0.4; }
+  50%       { transform: scale(1);   opacity: 1;   }
+}
+
+@keyframes kid-mic-pulse {
+  0%   { transform: scale(1);   opacity: 0.3; }
+  100% { transform: scale(1.6); opacity: 0;   }
+}
+
+.animate-kid-breathe {
+  animation: kid-breathe 4s ease-in-out infinite;
+}
+
+.animate-kid-bounce {
+  animation: kid-bounce 0.6s ease-in-out infinite alternate;
+}
+
+.animate-kid-pulse {
+  animation: kid-pulse 0.8s ease-in-out infinite;
+}
+
+.animate-kid-mic-pulse {
+  animation: kid-mic-pulse 1s ease-out infinite;
+}
